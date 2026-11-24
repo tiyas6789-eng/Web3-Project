@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentChain – Equipment Rental DApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">⛓️ RentChain</div>
+        <div class="wallet-info">
+            <span id="networkBadge" class="badge hidden"></span>
+            <span id="accountArea" class="addr">Not connected</span>
+            <button id="connectButton" class="btn-primary">Connect Wallet</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Rent expensive gear, trustlessly</h1>
+            <p>Rent Equipments, Safely</p>
+            <p class="status-line"><strong>Status:</strong> <span id="connectionStatus">Disconnected</span>
+               &nbsp;|&nbsp; <strong>Balance:</strong> <span id="balanceArea">--</span></p>
+        </section>
+
+        <section class="card" id="listCard">
+            <h2>List your equipment</h2>
+            <form id="createForm" class="form-grid">
+                <label>Equipment name
+                    <input id="itemName" type="text" placeholder="e.g. Canon EOS R5 camera" required>
+                </label>
+                <label>Rental fee (ETH)
+                    <input id="itemFee" type="number" step="any" min="0" placeholder="0.02" required>
+                </label>
+                <label>Security deposit (ETH)
+                    <input id="itemDeposit" type="number" step="any" min="0" placeholder="0.10" required>
+                </label>
+                <button type="submit" class="btn-primary">List item</button>
+            </form>
+        </section>
+
+        <section>
+            <div class="section-head">
+                <h2>Available equipment</h2>
+                <div class="filters">
+                    <select id="filterSelect">
+                        <option value="all">All items</option>
+                        <option value="available">Available</option>
+                        <option value="mine">My listings</option>
+                        <option value="rented-by-me">Rented by me</option>
+                    </select>
+                    <button id="getDataButton" class="btn-secondary">Refresh</button>
+                </div>
+            </div>
+            <p class="muted">Total listed on-chain: <span id="valueArea">--</span></p>
+            <div id="itemsGrid" class="items-grid">
+                <p class="muted">Connect your wallet to see equipment.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Ethers.js v6 from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
